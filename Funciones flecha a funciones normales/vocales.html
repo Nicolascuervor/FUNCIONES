@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function contarVocales (str) {
+        str = str.toLowerCase();
+        let vocales = 0;
+        
+        for (let i = 0; i < str.length; i++) {
+        const char = str[i];
+       
+        if ('a' ||  'e' ||  'i' ||  'o' ||  'u') {
+        vocales++;
+        }
+
+        }
+
+        return vocales;
+        }
+
+        console.log(contarVocales("Hola"))
+
+    </script>
+</body>
+</html>

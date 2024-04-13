@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+const sala1 = Array(10).fill(false);
+const sala2 = Array(10).fill(false);
+const valorEntrada = 5000
+let recaudo1 = 0
+let recaudo2 = 0
+
+
+
+function verDisponibilidad() {                   //Funcion sin parametros que utiliza un map para mostrar los asientos disponibles en forma de lista en las salas correspondientes
+  alert("Sala 1:");
+  alert(sala1.map((asiento, i) => asiento ? `[X] Asiento ${i + 1}` : `[ ] Asiento ${i + 1}`).join("\n"));
+  alert("Sala 2:");
+  alert(sala2.map((asiento, i) => asiento ? `[X] Asiento ${i + 1}` : `[ ] Asiento ${i + 1}`).join("\n"));
+}
+
+function reservarAsiento() {                    //Funcion sin parametros que solicita al usuario el numero de sala y asiento que desee reservar y despues el asiento se tacha en la lista
+  const sala = prompt("Ingresa el número de la sala (1 o 2)");
+  const asiento = parseInt(prompt("Ingresa el número del asiento (1 a 10)")) - 1;
+
+  if (sala === "1" && !sala1[asiento]) {
+    sala1[asiento] = true;
+    recaudo1 += valorEntrada
+    alert(`Asiento ${asiento + 1} de la sala 1 reservado.`);
+    
+  } else if (sala === "2" && !sala2[asiento]) {
+    sala2[asiento] = true;
+    recaudo2 += valorEntrada
+    alert(`Asiento ${asiento + 1} de la sala 2 reservado.`);
+  } else {
+    alert("El asiento ya está reservado o la sala no es válida.");
+  }
+}
+
+let total = recaudo1 + recaudo2
+
+function verPelicula() {                                 //Funcion para determinar cuantos asientos hay disponibles en cada sala y saber si se puede entrar o no
+  const sala = prompt("Ingresa el número de la sala (1 o 2)");
+  const asientosLibres = sala === "1" ? sala1.filter(asiento => !asiento) : sala2.filter(asiento => !asiento);
+
+  if (asientosLibres.length > 0) {
+    alert(`Hay ${asientosLibres.length} asientos libres en la sala ${sala}.`);
+    alert("Disfrutad de la película!");
+  } else {
+    alert(`Lo siento, todos los asientos de la sala ${sala} están reservados.`);
+  }
+}
+
+
+
+let verBalance = () => {
+  alert(`Total recaudado en la sala 1 es de un total de ${recaudo1} \n total recaudado en la sala 2 es de un total de ${recaudo2} \n El total recaudado en las 2 salas es de un total de ${recaudo1 + recaudo2} `)
+  
+  
+}
+
+let check = true
+
+while (check) {                                          //Ciclo while para desplegar el menu con las opciones
+  const opcion = prompt("Bienvenido a la sala de cine (Valor de voleta 5000) \n Selecciona una opción: \n 1. Ver disponibilidad de asientos \n 2. Reservar asiento \n 3. Ver ocupación sala \n 4. Ver recaudo de salas \n 5. Salir" );
+
+  switch (opcion) {
+    case "1":
+      verDisponibilidad();
+      break;
+
+    case "2":
+      reservarAsiento();
+      break;
+
+    case "3":
+      verPelicula();
+      break;
+
+    case "4":
+      verBalance();
+      break;
+
+    case "5":
+      alert("¡Hasta luego!");
+      check = !check
+
+      break;
+      
+
+    default:
+      alert("Opción no válida. Intenta de nuevo.");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>
